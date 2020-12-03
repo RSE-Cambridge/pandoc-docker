@@ -5,7 +5,7 @@ LABEL  maintainer="Stephen Steiner <ntwrkguru@gmail.com>"
 # Install dependencies
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections \
     && apt-get update -y \
-    && apt-get install -y --no-install-recommends \
+    && apt-get install -yqq --no-install-recommends \
        texlive-full \
        texlive-xetex \
        texlive-latex-extra \

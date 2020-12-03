@@ -7,7 +7,7 @@ Docker image for the source distribution of [Pandoc](http://johnmacfarlane.net/p
 `cd` to the dir with your source files, then:
 
 ```bash
-$ docker run -v $PWD:/build ntwrkguru/pandoc-gitlab-ci pandoc [OPTIONS] [FILES]
+$ docker run -v $PWD:/build ntwrkguru/pandoc-gitlab-ci [pandoc options] [file(s)]
 ```
 From `--help`
 
@@ -33,7 +33,7 @@ image: ntwrkguru/pandoc-gitlab-ci
 
 PDF:
   script:
-    - pandoc -f rst -t pdf docs/test.rst -o rst.pdf
+    - -f rst -t pdf docs/test.rst -o rst.pdf
   artifacts:
     paths:
       - "*.pdf"
