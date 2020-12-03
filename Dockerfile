@@ -7,8 +7,7 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
     && apt-get update -y \
     && apt-get install -y --no-install-recommends \
        texlive-full \
-       texlive-xetex latex-xcolor \
-       texlive-math-extra \
+       texlive-xetex \
        texlive-latex-extra \
        texlive-fonts-extra \
        texlive-bibtex-extra \
@@ -22,3 +21,6 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 RUN cabal update && cabal install pandoc pandoc-citeproc --force-reinstalls
 
 WORKDIR /build
+
+ENTRYPOINT ["pandoc"]
+CMD ["--help"]
