@@ -1,6 +1,7 @@
 FROM haskell:8
 
-LABEL  maintainer="Stephen Steiner <ntwrkguru@gmail.com>"
+# After ntwrkguru/pandoc-docker by "Stephen Steiner <ntwrkguru@gmail.com>"
+LABEL  maintainer="Chris Edsall <cje57@cam.ac.uk>"
 
 # Install dependencies
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections \
@@ -14,11 +15,12 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
        fontconfig \
        lmodern \
        libghc-text-icu-dev \
+       make \
        zip \
     && apt-get clean
 
 # Install cabal and then pandoc + citeproc
-RUN cabal update && cabal install pandoc pandoc-citeproc --force-reinstalls
+RUN cabal update && cabal install pandoc pandoc-citeproc pandoc-crossref --force-reinstalls
 
 WORKDIR /build
 
